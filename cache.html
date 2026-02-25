@@ -84,8 +84,15 @@
       // Navigate back to index.html to load the exploit from cache
       setTimeout(function() { location.reload(); }, 3000);
     }
+    // On error
+    function DLError(e) {
+      window.log(" ");
+      window.log("[CACHE ERROR] An error occured during Cache...");
+      window.log("[CACHE ERROR] Check if payload.bin file included in the directory!!!");
+    }
     // Event listeners
     window.applicationCache.addEventListener("progress", DLProgress, false);
+    window.applicationCache.addEventListener("error", DLError, false);
     window.applicationCache.oncached = function(e) { DisplayCacheProgress(); };
     window.applicationCache.onupdateready = function(e) { DisplayCacheProgress(); };
     // Initialization message on DOM load
