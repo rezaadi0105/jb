@@ -35,6 +35,13 @@ Additionally, the project utilizes **firmware-aware dynamic script loading** to 
 
 ## Major Changes
 
+**[5.05]:**
+- **Minor refinements** — improved status output using the existing WebKit logging system, applied small code optimizations and removed redundant code paths.
+
+**[6.72]:**
+- **Minor refinements** — improved status output using the existing WebKit logging system, applied small code optimizations and removed redundant code paths.
+- **Minor adjust for entrypoint** — replaced try/catch-based success detection with a global state flag for cleaner execution flow.
+
 **[7.00-9.60] PSFree & Lapse:**
 - **Removed all** `.mjs` **files** — converted the codebase to plain `.js` to improve cross-platform compatibility and simplify loading requirements.
 - **Refactored for more sequential** `C-like` **execution** — code reorganized to follow a linear flow for easier reasoning, deterministic timing, and simpler debugging.
@@ -44,9 +51,9 @@ Additionally, the project utilizes **firmware-aware dynamic script loading** to 
 - **Embedded** `.elf/.bin` **assets as shellcodes inside JS** — binary resources converted to in-file shellcodes to avoid read/load errors in constrained environments.
 - **Modernized shellcode implementation** — adapted structural conventions from the BD-JB source and introduced a utility function to convert kpatch hex strings into byte arrays.
 - **Merged various tweaks from Al-Azif’s source** — incorporated selected stability, compatibility, and workflow improvements from Al-Azif’s implementation to enhance overall reliability and reduce edge-case failures.
-- **Reworked `jitshm` handling in the kpatch stage** — replaced the previous `write_fd` aliasing approach with direct `exec_fd` usage to simplify JIT shared memory management.
-- **Safeguarded `make_aliased_pktopts` routine** — removed the repeated loop that previously attempted multiple alias creations. Failed retries could trigger kernel panic or immediate console shutdown. The updated routine now performs a single attempt; if it fails, the user is expected to restart from the system menu and retry safely.
-- **Improved kernel address leak scanning resolution** — reduced the offset increment step from `0x80` to `0x40` during the `leak_kernel_addrs` phase to increase detection accuracy and reduce the likelihood of missing valid structures.
+- **Reworked** `jitshm` **handling in the kpatch stage** — replaced the previous `write_fd` aliasing approach with direct `exec_fd` usage to simplify JIT shared memory management.
+- **Minor adjustment to** `make_aliased_pktopts` **routine** — removed the repeated loop that previously attempted multiple alias creations. Failed retries could trigger kernel panic or immediate console shutdown. The updated routine now performs a single attempt; if it fails, the user is expected to restart from the system menu and retry safely.
+- **Minor adjustment to kernel address leak scanning resolution** — reduced the offset increment step from `0x80` to `0x40` during the `leak_kernel_addrs` phase to increase detection accuracy and reduce the likelihood of missing valid structures.
 - **Simlified payload loader function** — removed stub-based trampoline and switched to direct RWX payload execution.
 - **GC handling improvements** — garbage collection handling within the PSFree stage has been refined to improve object scanning reliability. Memory layout adjustments were introduced to ensure that critical indices (including index 0) are properly scanned during GC traversal. This reduces the risk of unexpected object invalidation and increases exploit stability under memory pressure.
 - **Stabilized failure handling via structured cleanup routine** — implemented a BD-JB-inspired `doCleanup()` function to properly release exploit resources before exit. Without this cleanup stage, failed attempts could leave the system in an unstable state, often triggering an immediate kernel panic and hard shutdown when attempting to restart. With proper resource unwinding, the console can now be safely restarted from the system menu, allowing clean retry attempts.
@@ -75,7 +82,8 @@ On your PS4 browser, navigate to: `http://YOUR_PC_IP:8080/index.html`
 
 ## Contributing
 
-Contributions are welcome! Feel free to open pull requests for bug fixes, UI improvements, or additional features.
+- Contributions are welcome! Feel free to open pull requests for bug fixes, UI improvements, or additional features.
+- Due to my limited access to 5.05 and 6.72 firmware consoles, extensive success rate tuning has not been possible. Contributions focused on reliability improvements and success rate optimization for these firmwares are highly appreciated.
 
 ## License
 
