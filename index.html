@@ -116,7 +116,7 @@
       var is67x = ((ua.indexOf(" 6.70") !== -1) || (ua.indexOf(" 6.71") !== -1) || (ua.indexOf(" 6.72") !== -1));
       if (isPS4 && is67x && (window.applicationCache.status !== 0)) {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '672entrypoint.js', false); // sync
+        xhr.open('GET', '672entrypoint.js', false);
         xhr.send('');
         if (xhr.status === 200)
           eval.call(top.window, xhr.responseText);
@@ -134,7 +134,7 @@
       window.log("Detected FW: PS" + device + " v" + fwVersion + ", PS4JB Version: v1.02b\n");
       // Supported FW lists
       var supportedFW = {
-        "4": ["5.05", "6.72",
+        "4": ["5.05", "6.70", "6.71", "6.72",
               "7.00", "7.01", "7.02", "7.50", "7.51", "7.55",
               "8.00", "8.01", "8.03", "8.50", "8.52",
               "9.00", "9.03", "9.04", "9.50", "9.51", "9.60"],
