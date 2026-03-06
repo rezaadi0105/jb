@@ -59,6 +59,11 @@ Additionally, the project utilizes **firmware-aware dynamic script loading** to 
 - **Stabilized failure handling via structured cleanup routine** — implemented a BD-JB-inspired `doCleanup()` function to properly release exploit resources before exit. Without this cleanup stage, failed attempts could leave the system in an unstable state, often triggering an immediate kernel panic and hard shutdown when attempting to restart. With proper resource unwinding, the console can now be safely restarted from the system menu, allowing clean retry attempts.
 - **Increased modularity** — compared to my `psfree_lapse` repository, this project introduces a more modular architecture. Instead of relying on a single bundled `bundle.js` file, the exploit chain has been refactored into separate logical components like `helpers.js`, `psfree.js`, `kpatches.js` and `lapse.js`.
 - **Dynamic script loading** — this project implements firmware-aware dynamic script loading. Rather than loading a monolithic bundle, exploit stages are injected at runtime based on firmware and execution state. This provides: Clear stage separation, Reduced cross-component side effects and Improved firmware-specific targeting.
+- **BinLoader function** — The BinLoader function is activated on the second run of the exploit. After checking if the host is already jailbroken, the host starts the BinLoader and listens on port 9020. Send your payload using a compatible payload injector. My repo `psx_payload_injector` can also be used.
+
+## ToDo List
+
+- Investigate Lapse Stage 3 to improve success rate
 
 ## Notes:
 
