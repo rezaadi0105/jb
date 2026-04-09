@@ -81,11 +81,14 @@ async function doJailBreak() {
     await sleep(500); // Wait 500ms
     // Inject HEN payload
     jb_step_status = await PayloadLoader("payload.bin"); // Read payload from .bin file
+    await sleep(1000); // Wait 1000ms
+    // Inject FAN payload
+    jb_step_status = await PayloadLoader("fan.bin");
     if (jb_step_status !== 1) {
       window.log("Failed to load HEN!\nPlease restart console and try again...", "red");
       return;
     }
-    window.log("Homebrew Enabler loaded", "green");
+    window.log("Homebrew Enabler loaded and fan control applied", "green");
     window.log("\nPSFree & Lapse exploit with AIO fixes by ABC");
   }
   else {
