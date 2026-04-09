@@ -65,19 +65,19 @@
     </script>
   </head>
   <body>
-    <h2>PS4 5.05, [6.72 - 9.60] Exploit Chain</h2>
+    <h2>PS4 5.05, 6.70, 6.71, 6.72, [7.00-9.60] Exploit Chain</h2>
     <div>
       <button id="jailbreakBtn">Start Jailbreak</button>
     </div>
     <div style="margin-top: 15px;">
       <label style="font-size: 16px;">
         <input type="checkbox" id="autoRunCheck" checked>
-        Autorun in <span id="countdown">5</span> seconds
+        Autorun in <span id="countdown">10</span> seconds
       </label>
     </div>
     <pre id="console"></pre>
     <footer>
-      UI Designed by <strong>Feyzee</strong>
+      UI Designed by <strong>Feyzee & Reza A.P</strong>
     </footer>
     <img src="henlogo.png" id="hen_logo">
   </body>
@@ -158,7 +158,7 @@
       return supportedFW[device].indexOf(fwVersion) !== -1;
     }
     var autoRunEnabled = true;
-    var countdownValue = 5;
+    var countdownValue = 10;
     var countdownTimer = null;
     // Button click
     document.getElementById("jailbreakBtn").addEventListener("click", function () {
@@ -174,7 +174,7 @@
       outputConsole.textContent = ""; // Clear console log
       try {
         if (!window.checkPlatformIsSupported()) {
-          window.log("Unsupported platform detected! Designed for PS4 5.05, [6.72 - 9.60]", "red");
+          window.log("Unsupported platform detected! Designed for PS4 5.05, 6.70, 6.71, 6.72, [7.00-9.60]", "red");
           /*
           window.log("Running DEMO application...\n");
           window.log("Detected FW: PS4 v9.00\n");
@@ -232,7 +232,7 @@
     // Restart countdown
     function restartCountdown() {
       clearInterval(countdownTimer);
-      countdownValue = 5;
+      countdownValue = 10;
       countdownSpan.textContent = countdownValue;
       countdownTimer = setInterval(function () {
         if (!autoRunEnabled) {
